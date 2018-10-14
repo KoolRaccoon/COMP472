@@ -50,7 +50,8 @@ class Node(object):
                  Parent         = None,
                  Board_Size     = None,
                  Move           = None,
-                 Depth          = 0):
+                 Depth          = 0,
+                 Piece_Moved    = None):
         
         self.Heuristic      = Heuristic
         self.Board 	        = Board
@@ -59,6 +60,7 @@ class Node(object):
         self.Board_Size     = Board_Size
         self.Move           = Move
         self.Depth          = Depth
+        self.Piece_Moved    = Piece_Moved
 
     def setHeuristic(self, Heuristic):
         self.Heurisitc = Heurisitc
@@ -107,6 +109,13 @@ class Node(object):
     
     def getDepth(self):
         return self.Depth
+
+
+    def setPiece_Moved(self, Piece_Moved):
+        self.Piece_Moved = Piece_Moved
+    
+    def getPiece_Moved(self):
+        return self.Piece_Moved
     
 
 ### End Class NodeTree ###
@@ -133,20 +142,24 @@ def Find_Zero_Indexes(Node):
 	# 		return i
 
 def Move_Up(Node):
-    Zero_Pos = Find_Zero_Indexes(Node)
-    Zero_Row = Zero_Pos[0]  
-    Zero_Col = Zero_Pos[1]
-    Board    = Node.getBoard_Position()
-    print(Zero_Pos)
+    Zero_Pos                = Find_Zero_Indexes(Node)
+    Zero_Row                = Zero_Pos[0]  
+    Zero_Col                = Zero_Pos[1]
+    Board                   = Node.getBoard_Position()
+    Board_Size              = Node.getBoard_Size()
+    Max_Row                 = Board_Size[0]
+    Max_Col                 = Board_Size[1]
+    Index_Of_Moving_Piece   = None
+    # print(Zero_Pos)
     if Zero_Row - 1 >= 0:
         temp = Board[Zero_Row-1][Zero_Col]
+        Index_Of_Moving_Piece = (Zero_Row-1)*Max_Col + Zero_Col
         Board[Zero_Row-1][Zero_Col] = 0
         Board[Zero_Row][Zero_Col] = temp
-
+        Node.setPiece_Moved(Index_Of_Moving_Piece)
+        Node.setBoard_Position(Board)
         # print ("Board from Move_up", Board)
 
-    Node.setBoard_Position(Board)
-    
     # if Zero_Pos -  Row > 0:
     # 	temp = Board[Zero_Pos+Row]
     # 	Board[Zero_Pos+Row] = 0
@@ -154,133 +167,160 @@ def Move_Up(Node):
     return
 
 def Move_Up_Right(Node):
-    Zero_Pos    = Find_Zero_Indexes(Node)
-    Zero_Row    = Zero_Pos[0]  
-    Zero_Col    = Zero_Pos[1]
-    Board       = Node.getBoard_Position()
-    Board_Size  = Node.getBoard_Size()
-    Max_Row     = Board_Size[0]
-    Max_Col     = Board_Size[1]
-    print(Zero_Pos)
+    Zero_Pos                = Find_Zero_Indexes(Node)
+    Zero_Row                = Zero_Pos[0]  
+    Zero_Col                = Zero_Pos[1]
+    Board                   = Node.getBoard_Position()
+    Board_Size              = Node.getBoard_Size()
+    Max_Row                 = Board_Size[0]
+    Max_Col                 = Board_Size[1]
+    Index_Of_Moving_Piece   = None
+
+    # print(Zero_Pos)
     if Zero_Row - 1 >= 0 and Zero_Col + 1 < Max_Col:
         temp = Board[Zero_Row-1][Zero_Col+1]
+        Index_Of_Moving_Piece = (Zero_Row-1)*Max_Col + Zero_Col+1
         Board[Zero_Row-1][Zero_Col+1] = 0
         Board[Zero_Row][Zero_Col] = temp
+        Node.setPiece_Moved(Index_Of_Moving_Piece)
+        Node.setBoard_Position(Board)
 
         # print ("Board from Move_up_Right", Board)
 
-    Node.setBoard_Position(Board)
     return
 
 def Move_Right(Node):
-    Zero_Pos    = Find_Zero_Indexes(Node)
-    Zero_Row    = Zero_Pos[0]  
-    Zero_Col    = Zero_Pos[1]
-    Board       = Node.getBoard_Position()
-    Board_Size  = Node.getBoard_Size()
-    Max_Row     = Board_Size[0]
-    Max_Col     = Board_Size[1]
-    print(Zero_Pos)
+    Zero_Pos                = Find_Zero_Indexes(Node)
+    Zero_Row                = Zero_Pos[0]  
+    Zero_Col                = Zero_Pos[1]
+    Board                   = Node.getBoard_Position()
+    Board_Size              = Node.getBoard_Size()
+    Max_Row                 = Board_Size[0]
+    Max_Col                 = Board_Size[1]
+    Index_Of_Moving_Piece   = None
+    # print(Zero_Pos)
 
     if Zero_Col + 1 < Max_Col:
         temp = Board[Zero_Row][Zero_Col+1]
+        Index_Of_Moving_Piece = (Zero_Row)*Max_Col + Zero_Col+1
         Board[Zero_Row][Zero_Col+1] = 0
         Board[Zero_Row][Zero_Col] = temp
+        Node.setPiece_Moved(Index_Of_Moving_Piece)
+        Node.setBoard_Position(Board)
 
         # print ("Board from Move_Right", Board)
 
-    Node.setBoard_Position(Board)
     return
 
 def Move_Down_Right(Node):
-    Zero_Pos    = Find_Zero_Indexes(Node)
-    Zero_Row    = Zero_Pos[0]  
-    Zero_Col    = Zero_Pos[1]
-    Board       = Node.getBoard_Position()
-    Board_Size  = Node.getBoard_Size()
-    Max_Row     = Board_Size[0]
-    Max_Col     = Board_Size[1]
-    print(Zero_Pos)
+    Zero_Pos                = Find_Zero_Indexes(Node)
+    Zero_Row                = Zero_Pos[0]  
+    Zero_Col                = Zero_Pos[1]
+    Board                   = Node.getBoard_Position()
+    Board_Size              = Node.getBoard_Size()
+    Max_Row                 = Board_Size[0]
+    Max_Col                 = Board_Size[1]
+    Index_Of_Moving_Piece   = None
+    # print(Zero_Pos)
 
     if Zero_Row + 1 < Max_Row and Zero_Col + 1 < Max_Col:
         temp = Board[Zero_Row+1][Zero_Col+1]
+        Index_Of_Moving_Piece = (Zero_Row+1)*Max_Col + Zero_Col+1
         Board[Zero_Row+1][Zero_Col+1] = 0
         Board[Zero_Row][Zero_Col] = temp
+        Node.setPiece_Moved(Index_Of_Moving_Piece)
+        Node.setBoard_Position(Board)
 
         # print ("Board from Move_Down_Right", Board)
 
-    Node.setBoard_Position(Board)
     return
 
 def Move_Down(Node):
-    Zero_Pos    = Find_Zero_Indexes(Node)
-    Zero_Row    = Zero_Pos[0]  
-    Zero_Col    = Zero_Pos[1]
-    Board       = Node.getBoard_Position()
-    Board_Size  = Node.getBoard_Size()
-    Max_Row     = Board_Size[0]
-    Max_Col     = Board_Size[1]
+    Zero_Pos                = Find_Zero_Indexes(Node)
+    Zero_Row                = Zero_Pos[0]  
+    Zero_Col                = Zero_Pos[1]
+    Board                   = Node.getBoard_Position()
+    Board_Size              = Node.getBoard_Size()
+    Max_Row                 = Board_Size[0]
+    Max_Col                 = Board_Size[1]
+    Index_Of_Moving_Piece   = None
 
     if Zero_Row + 1 < Max_Row:
         temp = Board[Zero_Row+1][Zero_Col]
+        Index_Of_Moving_Piece = (Zero_Row+1)*Max_Col + Zero_Col
         Board[Zero_Row+1][Zero_Col] = 0
         Board[Zero_Row][Zero_Col] = temp
+        Node.setPiece_Moved(Index_Of_Moving_Piece)
+        Node.setBoard_Position(Board)
 
         # print ("Board from Move_Down", Board)
 
-    Node.setBoard_Position(Board)
     return
 
 def Move_Down_Left(Node):
-    Zero_Pos    = Find_Zero_Indexes(Node)
-    Zero_Row    = Zero_Pos[0]  
-    Zero_Col    = Zero_Pos[1]
-    Board       = Node.getBoard_Position()
-    Board_Size  = Node.getBoard_Size()
-    Max_Row     = Board_Size[0]
-    Max_Col     = Board_Size[1]
+    Zero_Pos                = Find_Zero_Indexes(Node)
+    Zero_Row                = Zero_Pos[0]  
+    Zero_Col                = Zero_Pos[1]
+    Board                   = Node.getBoard_Position()
+    Board_Size              = Node.getBoard_Size()
+    Max_Row                 = Board_Size[0]
+    Max_Col                 = Board_Size[1]
+    Index_Of_Moving_Piece   = None
 
     if Zero_Row + 1 < Max_Row and Zero_Col - 1 >= 0:
         temp = Board[Zero_Row+1][Zero_Col-1]
+        Index_Of_Moving_Piece = (Zero_Row+1)*Max_Col + Zero_Col-1
         Board[Zero_Row+1][Zero_Col-1] = 0
         Board[Zero_Row][Zero_Col] = temp
+        Node.setPiece_Moved(Index_Of_Moving_Piece)
+        Node.setBoard_Position(Board)
 
         # print ("Board from Move_Down_Left", Board)
 
-    Node.setBoard_Position(Board)
     return
 
 def Move_Left(Node):
-    Zero_Pos    = Find_Zero_Indexes(Node)
-    Zero_Row    = Zero_Pos[0]  
-    Zero_Col    = Zero_Pos[1]
-    Board       = Node.getBoard_Position()
+    Zero_Pos                = Find_Zero_Indexes(Node)
+    Zero_Row                = Zero_Pos[0]  
+    Zero_Col                = Zero_Pos[1]
+    Board                   = Node.getBoard_Position()
+    Board_Size              = Node.getBoard_Size()
+    Max_Row                 = Board_Size[0]
+    Max_Col                 = Board_Size[1]
+    Index_Of_Moving_Piece   = None
 
     if Zero_Col - 1 >= 0:
         temp = Board[Zero_Row][Zero_Col-1]
+        Index_Of_Moving_Piece = (Zero_Row)*Max_Col + Zero_Col-1
         Board[Zero_Row][Zero_Col-1] = 0
         Board[Zero_Row][Zero_Col] = temp
+        Node.setPiece_Moved(Index_Of_Moving_Piece)
+        Node.setBoard_Position(Board)
 
         # print ("Board from Move_Left", Board)
 
-    Node.setBoard_Position(Board)
     return
 
 def Move_Up_Left(Node):
-    Zero_Pos    = Find_Zero_Indexes(Node)
-    Zero_Row    = Zero_Pos[0]  
-    Zero_Col    = Zero_Pos[1]
-    Board       = Node.getBoard_Position()
-    Board_Size  = Node.getBoard_Size()
+    Zero_Pos                = Find_Zero_Indexes(Node)
+    Zero_Row                = Zero_Pos[0]  
+    Zero_Col                = Zero_Pos[1]
+    Board                   = Node.getBoard_Position()
+    Board_Size              = Node.getBoard_Size()
+    Max_Row                 = Board_Size[0]
+    Max_Col                 = Board_Size[1]
+    Index_Of_Moving_Piece   = None
 
     if Zero_Row - 1 >= 0 and Zero_Col - 1 >= 0:
         temp = Board[Zero_Row-1][Zero_Col-1]
+        Index_Of_Moving_Piece = (Zero_Row-1)*Max_Col + Zero_Col-1
         Board[Zero_Row-1][Zero_Col-1] = 0
         Board[Zero_Row][Zero_Col] = temp
+        Node.setPiece_Moved(Index_Of_Moving_Piece)
+        Node.setBoard_Position(Board)
 
         # print ("Board from Move_Up_Left", Board)
 
-    Node.setBoard_Position(Board)
     return
 
 
@@ -290,6 +330,7 @@ def Move_Up_Left(Node):
 Col = 4
 Row = 3
 
+Pieces = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]
 Extracted_Puzzle = [1, 6, 3, 7, 5, 2, 0, 4, 9, 10, 11, 8]
 Board = [[i * j for j in range(Col)] for i in range(Row)]
 
@@ -328,10 +369,49 @@ Root = Node(Board = Board, Board_Size = [Row, Col], Depth=0)
 #Move_Down_Right(Root)
 
 #print ("Board after moving\n", Root.getBoard_Position())
-Max_Depth = 9
+Max_Depth = 10
 #Final_Solution_Found = [[i * j for j in range(Col)] for i in range(Row)]
 Final_Solution_Found = []
-print("Final_Solution_Found initialization ", Final_Solution_Found)
+Reversed_Search_Path = []
+Search_Path          = []
+# print("Final_Solution_Found initialization ", Final_Solution_Found)
+
+
+def Find_Search_Path(Node):
+    global Search_Path
+    if Node.getParent():
+        Current_Move = []
+        Index_of_Piece = Node.getPiece_Moved()
+        Current_Move.append(Pieces[Index_of_Piece])
+        Current_Move.append(Node.getBoard_Position())
+        Reversed_Search_Path.append(Current_Move)
+        Find_Search_Path(Node.getParent())
+
+    else:
+        Current_Move = []
+        Current_Move.append("0")
+        Current_Move.append(Node.getBoard_Position())
+        Reversed_Search_Path.append(Current_Move)
+
+    # Current_Move = Node.getMove()
+    # if Current_Move == 0:
+
+    # elif Current_Move == 1:
+        
+    # elif Current_Move == 2:
+        
+    # elif Current_Move == 3:
+        
+    # elif Current_Move == 4:
+        
+    # elif Current_Move == 5:
+        
+    # elif Current_Move == 6:
+        
+    # elif Current_Move == 7:
+
+
+
 
 
 def Tree_Traversal(Current_Node):
@@ -346,10 +426,13 @@ def Tree_Traversal(Current_Node):
             SolutionFound = True
             Final_Solution_Found = copy.deepcopy(Current_Node.getBoard_Position())
             print("Current_Node's depth", Current_Node.getDepth(),"move", Current_Node.getMove(), "Board", Current_Node.getBoard_Position())
+            Find_Search_Path(Current_Node)
+            ### Call function to find Search Path to solution
             return
         elif Current_Node.getDepth() == Max_Depth:
             Final_Solution_Found =  copy.deepcopy(Current_Node.getBoard_Position())
-            print ("Final_Solution_Found for Max_Depth", Final_Solution_Found)
+            # Find_Search_Path(Current_Node)
+            # print ("Final_Solution_Found for Max_Depth", Final_Solution_Found)
             return
         else:
             Zero_Pos    = Find_Zero_Indexes(Current_Node)
@@ -457,8 +540,16 @@ def Tree_Traversal(Current_Node):
 
 Tree_Traversal(Root)
 
-print("Final Solution found is:", Final_Solution_Found)
+### Reversing the Search Path List
+for i in reversed(Reversed_Search_Path):
+    Search_Path.append(i)
 
+print("Final Solution found is:", Final_Solution_Found, "\n")
+print("Search Path of Solution:\n", Search_Path)
+
+### Outputing to a file ###
+for j in Search_Path:
+    print(j, file=open("puzzleDFS.txt", "a"))
 
 #Output to puzzleDFS.txt
 
