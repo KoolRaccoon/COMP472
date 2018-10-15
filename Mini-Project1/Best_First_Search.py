@@ -371,7 +371,7 @@ Root = Node(Board = Board, Board_Size = [Row, Col], Depth=0)
 #Move_Down_Right(Root)
 
 #print ("Board after moving\n", Root.getBoard_Position())
-Max_Depth = 10
+Max_Depth = 300
 #Final_Solution_Found = [[i * j for j in range(Col)] for i in range(Row)]
 Final_Solution_Found = []
 Reversed_Search_Path = []
@@ -417,15 +417,15 @@ def Find_Search_Path(Node):
 def Heuristic1(Node):
     global Final_Solution
     Board = Node.getBoard_Position()
-    print (Board)
-    print (Final_Solution)
+    # print (Board)
+    # print (Final_Solution)
     heuristic = 0
     for i in range(len(Board)):
         for j in range(len(Board[i])):
             if Board[i][j] != Final_Solution[i][j] and Board[i][j]!= 0:
                 heuristic = heuristic +1
 
-    print(heuristic)
+    # print(heuristic)
     Node.setHeuristic(heuristic)
 
 
@@ -438,7 +438,7 @@ def Heuristic2(Node):
     Sum_Of_Permutation = 0
 
     Permuted_Board = [0 for x in range(Col*Row)]
-    print (Board)
+    # print (Board)
     for i in range (0, Row):
         for j in range (0, Col):
             Permuted_Board[k] = Board_2D[i][j]
@@ -453,9 +453,17 @@ def Heuristic2(Node):
     Node.setHeuristic(Sum_Of_Permutation)
 
 
-Heuristic2(Root)
-print ("Heuristic2 of Root", Root.getHeuristic())
 
+def Calculate_Heuristic(Node, Model):
+    if Model == 1:
+        Heuristic1(Node)
+    elif Model == 2:
+        Heuristic2(Node)
+    return
+# Heuristic2(Root)
+# print ("Heuristic2 of Root", Root.getHeuristic(Heuristic2(Root)))
+
+Heuristic_Model = 1
 
 def Tree_Traversal(Current_Node):
     #print("Calling Tree_Traversal Fct")
@@ -463,19 +471,21 @@ def Tree_Traversal(Current_Node):
     global Final_Solution_Found
     global SolutionFound
     global Type_Of_Search
+    global Heuristic_Model
     #while SolutionFound == False:
     if SolutionFound == False:
-
+        print("Current_Node's depth", Current_Node.getDepth(),"move", Current_Node.getMove(), "Board", Current_Node.getBoard_Position())
         if Current_Node.getBoard_Position() == Final_Solution:
             SolutionFound = True
             Final_Solution_Found = copy.deepcopy(Current_Node.getBoard_Position())
-            print("Current_Node's depth", Current_Node.getDepth(),"move", Current_Node.getMove(), "Board", Current_Node.getBoard_Position())
+            
             Find_Search_Path(Current_Node)
             ### Call function to find Search Path to solution
             return
         elif Current_Node.getDepth() == Max_Depth:
+            SolutionFound = True
             Final_Solution_Found =  copy.deepcopy(Current_Node.getBoard_Position())
-            # Find_Search_Path(Current_Node)
+            Find_Search_Path(Current_Node)
             # print ("Final_Solution_Found for Max_Depth", Final_Solution_Found)
             return
         else:
@@ -488,7 +498,7 @@ def Tree_Traversal(Current_Node):
             Max_Col     = Board_Size[1]
             LeafNodes   = []
 
-            if (Zero_Row - 1 >= 0) and (Current_Node.getMove() != 0): #Create node by moving Zero position up
+            if (Zero_Row - 1 >= 0) and (Current_Node.getMove() != 4): #Create node by moving Zero position up
                 # print("Create Node for moving up")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Up(New_Node)
@@ -497,9 +507,11 @@ def Tree_Traversal(Current_Node):
                 New_Node.setParent(Current_Node)
                 New_Node.setMove(0)
                 New_Node.setDepth(Current_Node.getDepth() + 1)
+                Calculate_Heuristic(New_Node, Heuristic_Model)
                 LeafNodes.append(New_Node)
+                # print ("Len LeafNodes ", len(LeafNodes))
 
-            if (Zero_Row - 1 >= 0 and Zero_Col + 1 < Max_Col) and (Current_Node.getMove() != 1): #Create node by moving Zero position Up-Right
+            if (Zero_Row - 1 >= 0 and Zero_Col + 1 < Max_Col) and (Current_Node.getMove() != 5): #Create node by moving Zero position Up-Right
                 # print("Create Node for moving up right")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Up_Right(New_Node)
@@ -508,9 +520,18 @@ def Tree_Traversal(Current_Node):
                 New_Node.setParent(Current_Node)
                 New_Node.setMove(1)
                 New_Node.setDepth(Current_Node.getDepth() + 1)
-                LeafNodes.append(New_Node)
+                Calculate_Heuristic(New_Node, Heuristic_Model)
+                if (len(LeafNodes) != 0):
+                    if (New_Node.getHeuristic() < LeafNodes[0].getHeuristic()):
+                        LeafNodes.insert(0, New_Node)
+                    else:
+                        LeafNodes.append(New_Node)
+                else:
+                    LeafNodes.append(New_Node)
+                # print ("Len LeafNodes ", len(LeafNodes))
 
-            if (Zero_Col + 1 < Max_Col) and (Current_Node.getMove() != 2): #Create node by moving Zero position Right
+
+            if (Zero_Col + 1 < Max_Col) and (Current_Node.getMove() != 6): #Create node by moving Zero position Right
                 # print("Create Node for moving right")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Right(New_Node)
@@ -519,9 +540,18 @@ def Tree_Traversal(Current_Node):
                 New_Node.setParent(Current_Node)
                 New_Node.setMove(2)
                 New_Node.setDepth(Current_Node.getDepth() + 1)
-                LeafNodes.append(New_Node)
-
-            if (Zero_Row + 1 < Max_Row and Zero_Col + 1 < Max_Col) and (Current_Node.getMove() != 3): #Create node by moving Zero position Down-Right
+                Calculate_Heuristic(New_Node, Heuristic_Model)
+                if (len(LeafNodes) != 0):
+                    for i in range (0, len(LeafNodes)):
+                        if (New_Node.getHeuristic() < LeafNodes[i].getHeuristic()):
+                            LeafNodes.insert(i, New_Node)
+                            break
+                        else:
+                            LeafNodes.append(New_Node)
+                            break
+                else:
+                    LeafNodes.append(New_Node)
+            if (Zero_Row + 1 < Max_Row and Zero_Col + 1 < Max_Col) and (Current_Node.getMove() != 7): #Create node by moving Zero position Down-Right
                 # print("Create Node for moving down right")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Down_Right(New_Node)
@@ -530,9 +560,20 @@ def Tree_Traversal(Current_Node):
                 New_Node.setParent(Current_Node)
                 New_Node.setMove(3)
                 New_Node.setDepth(Current_Node.getDepth() + 1)
-                LeafNodes.append(New_Node)
+                Calculate_Heuristic(New_Node, Heuristic_Model)
+                if (len(LeafNodes) != 0):
+                    for i in range (0, len(LeafNodes)):
+                        if (New_Node.getHeuristic() < LeafNodes[i].getHeuristic()):
+                            LeafNodes.insert(i, New_Node)
+                            break
+                        else:
+                            LeafNodes.append(New_Node)
+                            break
+                else:
+                    LeafNodes.append(New_Node)
+                # print ("Len LeafNodes ", len(LeafNodes))
 
-            if (Zero_Row + 1 < Max_Row) and (Current_Node.getMove() != 4): #Create node by moving Zero position Down
+            if (Zero_Row + 1 < Max_Row) and (Current_Node.getMove() != 0): #Create node by moving Zero position Down
                 # print("Create Node for moving down")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Down(New_Node)
@@ -541,9 +582,20 @@ def Tree_Traversal(Current_Node):
                 New_Node.setParent(Current_Node)
                 New_Node.setMove(4)
                 New_Node.setDepth(Current_Node.getDepth() + 1)
-                LeafNodes.append(New_Node)
+                Calculate_Heuristic(New_Node, Heuristic_Model)
+                if (len(LeafNodes) != 0):
+                    for i in range (0, len(LeafNodes)):
+                        if (New_Node.getHeuristic() < LeafNodes[i].getHeuristic()):
+                            LeafNodes.insert(i, New_Node)
+                            break
+                        else:
+                            LeafNodes.append(New_Node)
+                            break
+                else:
+                    LeafNodes.append(New_Node)
+                # print ("Len LeafNodes ", len(LeafNodes))
 
-            if (Zero_Row + 1 < Max_Row and Zero_Col - 1 >= 0) and (Current_Node.getMove() != 5): #Create node by moving Zero position Down-Left
+            if (Zero_Row + 1 < Max_Row and Zero_Col - 1 >= 0) and (Current_Node.getMove() != 1): #Create node by moving Zero position Down-Left
                 # print("Create Node for moving down left")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Down_Left(New_Node)
@@ -552,9 +604,20 @@ def Tree_Traversal(Current_Node):
                 New_Node.setParent(Current_Node)
                 New_Node.setMove(5)
                 New_Node.setDepth(Current_Node.getDepth() + 1)
-                LeafNodes.append(New_Node)
+                Calculate_Heuristic(New_Node, Heuristic_Model)
+                if (len(LeafNodes) != 0):
+                    for i in range (0, len(LeafNodes)):
+                        if (New_Node.getHeuristic() < LeafNodes[i].getHeuristic()):
+                            LeafNodes.insert(i, New_Node)
+                            break
+                        else:
+                            LeafNodes.append(New_Node)
+                            break
+                else:
+                    LeafNodes.append(New_Node)
+                # print ("Len LeafNodes ", len(LeafNodes))
 
-            if (Zero_Col - 1 >= 0) and (Current_Node.getMove() != 6): #Create node by moving Zero position Left
+            if (Zero_Col - 1 >= 0) and (Current_Node.getMove() != 2): #Create node by moving Zero position Left
                 # print("Create Node for moving left")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Left(New_Node)
@@ -563,9 +626,20 @@ def Tree_Traversal(Current_Node):
                 New_Node.setParent(Current_Node)
                 New_Node.setMove(6)
                 New_Node.setDepth(Current_Node.getDepth() + 1)
-                LeafNodes.append(New_Node)
+                Calculate_Heuristic(New_Node, Heuristic_Model)
+                if (len(LeafNodes) != 0):
+                    for i in range (0, len(LeafNodes)):
+                        if (New_Node.getHeuristic() < LeafNodes[i].getHeuristic()):
+                            LeafNodes.insert(i, New_Node)
+                            break
+                        else:
+                            LeafNodes.append(New_Node)
+                            break
+                else:
+                    LeafNodes.append(New_Node)
+                # print ("Len LeafNodes ", len(LeafNodes))
 
-            if (Zero_Row - 1 >= 0 and Zero_Col - 1 >= 0) and (Current_Node.getMove() != 7): #Create node by moving Zero position Up-Left
+            if (Zero_Row - 1 >= 0 and Zero_Col - 1 >= 0) and (Current_Node.getMove() != 3): #Create node by moving Zero position Up-Left
                 # print("Create Node for moving up left")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Up_Left(New_Node)
@@ -574,26 +648,49 @@ def Tree_Traversal(Current_Node):
                 New_Node.setParent(Current_Node)
                 New_Node.setMove(7)
                 New_Node.setDepth(Current_Node.getDepth() + 1)
-                LeafNodes.append(New_Node)
+                Calculate_Heuristic(New_Node, Heuristic_Model)
+                if (len(LeafNodes) != 0):
+                    for i in range (0, len(LeafNodes)):
+                        if (New_Node.getHeuristic() < LeafNodes[i].getHeuristic()):
+                            LeafNodes.insert(i, New_Node)
+                            break
+                        else:
+                            LeafNodes.append(New_Node)
+                            break
+                else:
+                    LeafNodes.append(New_Node)
+                # print ("Len LeafNodes ", len(LeafNodes))
 
-            Current_Node.setLeaf_Nodes(LeafNodes)
 
+            #Current_Node.setLeaf_Nodes(LeafNodes)
+            # LeafNodes.reverse()
+            for x in range (0, len(LeafNodes)):
+                # print ("Len LeafNodes ", len(LeafNodes))
+                print ("Heuristic of node ", LeafNodes[x].getHeuristic())
+                print (LeafNodes[x].getBoard_Position())
             for j in range (0, len(LeafNodes)):
                 Tree_Traversal(LeafNodes[j])
 
 
-# Tree_Traversal(Root)
+Tree_Traversal(Root)
 
 ### Reversing the Search Path List
 for i in reversed(Reversed_Search_Path):
     Search_Path.append(i)
 
 print("Final Solution found is:", Final_Solution_Found, "\n")
-print("Search Path of Solution:\n", Search_Path)
+print("Number of moves needed: ", len(Search_Path) - 1)
+#print("Search Path of Solution:\n", Search_Path)
 
 ### Outputing to a file ###
+Output_File = ""
+if Heuristic_Model == 1:
+    Output_File = "puzzleBFS-H1.txt"
+elif Heuristic_Model == 2:
+    Output_File = "puzzleBFS-H2.txt"
+
 for j in Search_Path:
-    print(j, file=open("puzzleDFS.txt", "a"))
+    print(j, file=open(Output_File, "a"))
 
 #Output to puzzleDFS.txt
 
