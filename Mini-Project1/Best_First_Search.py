@@ -1,43 +1,49 @@
-#
-#
-#
-# 1) Depth-First Search
-# 2) Best-First Search
-# 3) A* Algorithm
-#
-#
-#
-#   [	a,   b,   c,   d    ]
-# 	[	e,   f,   g,   h    ]
-# 	[	i,   j,   k,   l    ]
-# 
-#   There are 8 possible moves: (Also Order of Preference if there are ties) 
-# 		- up
-# 		- Up-Right
-# 		- Right
-# 		- Down-Right
-# 		- Down
-# 		- Down-Left
-# 		- Left
-# 		- Up-Left
-#		
+import copy
 
 
 
-# print("Example of input: 0 1 2 3 4 5 6 7 8 9 10 11")
-# input_string = input("Input the initial puzzle sequence\n")
-# type(input_string)
 
+
+# These need to be modified here
+#########################
+Max_Depth = 40          #
+Heuristic_Model = 1     #
+Col = 4                 #
+Row = 3                 #
+#########################
+
+
+
+print("Enter puzzle of 12 pieces, example of input: 0 1 2 3 4 5 6 7 8 9 10 11")
+input_puzzle = input("Input the initial puzzle sequence\n")
+type(input_puzzle)
+print("this is the initial puzzle sequence that was inputted: ", input_puzzle)
+Extracted_Puzzle = [int(s) for s in input_puzzle.split() if s.isdigit()]
+# print (Extracted_Puzzle)
+
+
+# input_heuristic = input("Enter Heuristic model: 1 is using Manhattan Distance, 2 is using Sum Of Permutations\n")
+# print (Heuristic_Model)
+# uzzle = input("Input the initial puzzle sequence\n")
+# Heuristic_Model = copy.deepcopy(input_heuristic)
+# Heuristic_Model = 1
 # print("this is the initial puzzle sequence that was inputted: ", input_string)
 
 # Extracted_Puzzle = [int(s) for s in input_string.split() if s.isdigit()]
+
+
+
+
+# input_Depth = input("Enter the maximum depth allowed\n")
+# Max_Depth = input_Depth
+
+
 
 # print (Extracted_Puzzle)
 
 
 #Check for errors in initial puzzle
 
-import copy
 
 # Node Class
 
@@ -330,7 +336,7 @@ def Move_Up_Left(Node):
 Col = 4
 Row = 3
 #Type_Of_Search will determine if we are using DFS, BFS-H1, BFS H2, A*-H1, A*-H2, represented with Integers from 0 to 4, respectively 
-Type_Of_Search = 0
+# Type_Of_Search = 0
 
 Pieces = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]
 Extracted_Puzzle = [1, 6, 3, 7, 5, 2, 0, 4, 9, 10, 11, 8]
@@ -371,7 +377,7 @@ Root = Node(Board = Board, Board_Size = [Row, Col], Depth=0)
 #Move_Down_Right(Root)
 
 #print ("Board after moving\n", Root.getBoard_Position())
-Max_Depth = 300
+
 #Final_Solution_Found = [[i * j for j in range(Col)] for i in range(Row)]
 Final_Solution_Found = []
 Reversed_Search_Path = []
@@ -463,7 +469,7 @@ def Calculate_Heuristic(Node, Model):
 # Heuristic2(Root)
 # print ("Heuristic2 of Root", Root.getHeuristic(Heuristic2(Root)))
 
-Heuristic_Model = 1
+
 
 def Tree_Traversal(Current_Node):
     #print("Calling Tree_Traversal Fct")
