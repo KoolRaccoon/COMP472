@@ -367,7 +367,7 @@ for i in range (0, Row):
 
 
 
-### Depth-First Search ### 
+### A-Star Search ### 
 SolutionFound = False
 Root = Node(Board = Board, Board_Size = [Row, Col], Depth=0)
 #Find_Zero_Indexes(Root)
@@ -480,7 +480,7 @@ def Tree_Traversal(Current_Node):
     global Heuristic_Model
     #while SolutionFound == False:
     if SolutionFound == False:
-        print("Current_Node's depth", Current_Node.getDepth(),"move", Current_Node.getMove(), "Board", Current_Node.getBoard_Position())
+        # print("Current_Node's depth", Current_Node.getDepth(),"move", Current_Node.getMove(), "Board", Current_Node.getBoard_Position())
         if Current_Node.getBoard_Position() == Final_Solution:
             SolutionFound = True
             Final_Solution_Found = copy.deepcopy(Current_Node.getBoard_Position())
@@ -670,10 +670,10 @@ def Tree_Traversal(Current_Node):
 
             #Current_Node.setLeaf_Nodes(LeafNodes)
             # LeafNodes.reverse()
-            for x in range (0, len(LeafNodes)):
-                # print ("Len LeafNodes ", len(LeafNodes))
-                print ("Heuristic of node ", LeafNodes[x].getHeuristic())
-                print (LeafNodes[x].getBoard_Position())
+            # for x in range (0, len(LeafNodes)):
+            #     # print ("Len LeafNodes ", len(LeafNodes))
+            #     print ("Heuristic of node ", LeafNodes[x].getHeuristic())
+            #     print (LeafNodes[x].getBoard_Position())
             for j in range (0, len(LeafNodes)):
                 Tree_Traversal(LeafNodes[j])
 
@@ -697,8 +697,6 @@ elif Heuristic_Model == 2:
 
 for j in Search_Path:
     print(j, file=open(Output_File, "a"))
-
-#Output to puzzleDFS.txt
 
 
 
