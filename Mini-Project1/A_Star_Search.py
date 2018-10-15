@@ -691,9 +691,9 @@ print("Number of moves needed: ", len(Search_Path) - 1)
 ### Outputing to a file ###
 Output_File = ""
 if Heuristic_Model == 1:
-    Output_File = "puzzleBFS-H1.txt"
+    Output_File = "puzzleAs-H1.txt"
 elif Heuristic_Model == 2:
-    Output_File = "puzzleBFS-H2.txt"
+    Output_File = "puzzleAs-H2.txt"
 
 for j in Search_Path:
     print(j, file=open(Output_File, "a"))
