@@ -1,4 +1,5 @@
 from sklearn import tree
+from sklearn.metrics import accuracy_score
 
 ###Extracting data from the training file###
 with open("DataSet-Release 1/ds1/ds1Train.csv", 'r') as file:
@@ -49,5 +50,5 @@ DTclassifier.fit(train_features, train_labels)
 
 validation_predicted = DTclassifier.predict(val_features)
 
-DTScore = DTclassifier.score(val_features,val_labels)
+DTScore = accuracy_score(val_labels,validation_predicted)
 print(DTScore)
