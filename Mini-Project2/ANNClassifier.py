@@ -29,7 +29,7 @@ for row in val_features:
 
 
 
-DTclassifier = tree.DecisionTreeClassifier(criterion="entropy", max_depth=40)
+DTclassifier = tree.DecisionTreeClassifier(criterion="entropy")
 # given in slides: criterion = "entropy", max_depth = 10)
 
 # (criterion=’gini’, 
