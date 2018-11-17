@@ -31,7 +31,7 @@ for row in val_features:
 
 
 
-DTclassifier = tree.DecisionTreeClassifier(criterion="gini")
+DTclassifier = tree.DecisionTreeClassifier(criterion="entropy", max_depth = 40)
 # given in slides: criterion = "entropy", max_depth = 10)
 
 # (criterion=’gini’, 
@@ -56,7 +56,7 @@ DTScore = accuracy_score(val_labels,validation_predicted)
 print("accuracy score of the DT model:", DTScore)
 
 
-joblib.dump(DTclassifier, 'DTModelDs1.joblib')
+joblib.dump(DTclassifier, 'DS1Val_dt.joblib')
 
 #load saved model:
 #clf = joblib.load('DTModel.joblib')
