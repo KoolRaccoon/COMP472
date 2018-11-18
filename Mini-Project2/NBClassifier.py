@@ -2,8 +2,10 @@ from sklearn import naive_bayes
 from sklearn.metrics import accuracy_score
 from sklearn.externals import joblib
 
+######################################### Dataset 1 #########################################
+
 ### Extracting data from the training file ###
-with open("DataSet-Release 1/ds1/ds1Train.csv", 'r') as file:
+with open("DataSet-Release 2/ds1/ds1Train.csv", 'r') as file:
     data = [line.split(',') for line in file.read().split('\n')]
 train_features = [[int(element) for element in row] for row in data]
 
@@ -17,7 +19,7 @@ for row in train_features:
 
 
 ### Extracting Validation data ###
-with open("DataSet-Release 1/ds1/ds1Val.csv", 'r') as file:
+with open("DataSet-Release 2/ds1/ds1Val.csv", 'r') as file:
     data = [line.split(',') for line in file.read().split('\n')]
 val_features = [[int(element) for element in row] for row in data]
 
@@ -41,16 +43,18 @@ validation_predicted = NBclassifier.predict(val_features)
 NBScore = accuracy_score(val_labels,validation_predicted)
 print("accuracy score of the NB model for DS1:", NBScore)
 
-# Saving the Model
-joblib.dump(NBclassifier, 'DS1Val_nb.joblib')
+# Saving validation predictions 
+with open('Results/Validation/ds1Val-nb.csv', 'w') as file:
+    for i in range(len(validation_predicted)):
+        file.write('%d,%d\n' % (i + 1, validation_predicted[i]))
 
-#load saved model:
-#clf = joblib.load('DS1Val_nb.joblib')
+# Saving the Model
+joblib.dump(NBclassifier, 'Models/NBModelDs1.joblib')
 
 ######################################### Dataset 2 #########################################
 
 ### Extracting data from the training file ###
-with open("DataSet-Release 1/ds2/ds2Train.csv", 'r') as file:
+with open("DataSet-Release 2/ds2/ds2Train.csv", 'r') as file:
     data = [line.split(',') for line in file.read().split('\n')]
 train_features = [[int(element) for element in row] for row in data]
 
@@ -62,7 +66,7 @@ for row in train_features:
     del row[1024]  # 0 for column 1, 1 for column 2, etc.
 
 ### Extracting Validation data ###
-with open("DataSet-Release 1/ds2/ds2Val.csv", 'r') as file:
+with open("DataSet-Release 2/ds2/ds2Val.csv", 'r') as file:
     data = [line.split(',') for line in file.read().split('\n')]
 val_features = [[int(element) for element in row] for row in data]
 
@@ -86,8 +90,10 @@ validation_predicted = NBclassifier.predict(val_features)
 NBScore = accuracy_score(val_labels,validation_predicted)
 print("accuracy score of the NB model for DS2:", NBScore)
 
-# Saving the Model
-joblib.dump(NBclassifier, 'DS2Val_nb.joblib')
+# Saving validation predictions 
+with open('Results/Validation/ds2Val-nb.csv', 'w') as file:
+    for i in range(len(validation_predicted)):
+        file.write('%d,%d\n' % (i + 1, validation_predicted[i]))
 
-#load saved model:
-#clf = joblib.load('DS2Val_nb.joblib')
+# Saving the Model
+joblib.dump(NBclassifier, 'Models/NBModelDs2.joblib')
