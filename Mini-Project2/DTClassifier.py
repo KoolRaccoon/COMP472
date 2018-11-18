@@ -5,7 +5,7 @@ from sklearn.externals import joblib
 
 ### Extracting data from the training file ###
 with open("DataSet-Release 1/ds1/ds1Train.csv", 'r') as file:
-    data1 = [line.split(',') for line in file.read().split('\n')]
+    data_ds1 = [line.split(',') for line in file.read().split('\n')]
 train_features_ds1 = [[int(element) for element in row] for row in data_ds1]
 
 # Extracting the training labels
@@ -65,7 +65,7 @@ joblib.dump(DTclassifier_ds1, 'DS1Val_dt.joblib')
 
 ### Extracting data from the training file ###
 with open("DataSet-Release 1/ds2/ds2Train.csv", 'r') as file:
-    data1 = [line.split(',') for line in file.read().split('\n')]
+    data_ds2 = [line.split(',') for line in file.read().split('\n')]
 train_features_ds2 = [[int(element) for element in row] for row in data_ds2]
 
 # Extracting the training labels
@@ -113,7 +113,7 @@ validation_predicted_ds2 = DTclassifier_ds2.predict(val_features_ds2)
 
 # Getting the accuracy score
 DTScore_ds2 = accuracy_score(val_labels_ds2, validation_predicted_ds2)
-print("accuracy score of the DT model for DS1:", DTScore_ds2)
+print("accuracy score of the DT model for DS2:", DTScore_ds2)
 
 # Saving the Model
 joblib.dump(DTclassifier_ds2, 'DS2Val_dt.joblib')

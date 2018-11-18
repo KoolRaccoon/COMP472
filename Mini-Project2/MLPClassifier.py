@@ -28,7 +28,7 @@ for row in val_features:
 
 
 # Creating the classifier 
-MLPClassifier = MLPClassifier(solver = "adam",
+MLPClassifier_ds1 = MLPClassifier(solver = "adam",
                             activation = "relu",
                             hidden_layer_sizes=(100, 3), 
                             alpha=0.0001, 
@@ -58,17 +58,17 @@ MLPClassifier = MLPClassifier(solver = "adam",
 #  n_iter_no_change=10)
 
 # fitting the model
-MLPClassifier.fit(train_features, train_labels)
+MLPClassifier_ds1.fit(train_features, train_labels)
 
 # Predicting the validation set
-validation_predicted = MLPClassifier.predict(val_features)
+validation_predicted = MLPClassifier_ds1.predict(val_features)
 
 # Getting the accuracy score
 MLPScore = accuracy_score(val_labels,validation_predicted)
 print("accuracy score of the MLP model for DS1:", MLPScore)
 
 # Saving the Model
-joblib.dump(MLPClassifier, 'DS1Val_mlp.joblib')
+joblib.dump(MLPClassifier_ds1, 'DS1Val_mlp.joblib')
 
 # load saved model:
 # clf = joblib.load('DTModel.joblib')
@@ -101,7 +101,7 @@ for row in val_features:
 
 
 # Creating the classifier 
-MLPClassifier = MLPClassifier(solver = "adam",
+MLPClassifier_ds2 = MLPClassifier(solver = "adam",
                             activation = "relu",
                             hidden_layer_sizes=(100, 3), 
                             alpha=0.0001, 
@@ -131,14 +131,14 @@ MLPClassifier = MLPClassifier(solver = "adam",
 #  n_iter_no_change=10)
 
 # fitting the model
-MLPClassifier.fit(train_features, train_labels)
+MLPClassifier_ds2.fit(train_features, train_labels)
 
 # Predicting the validation set
-validation_predicted = MLPClassifier.predict(val_features)
+validation_predicted = MLPClassifier_ds2.predict(val_features)
 
 # Getting the accuracy score
 MLPScore = accuracy_score(val_labels,validation_predicted)
 print("accuracy score of the MLP model for DS2:", MLPScore)
 
 # Saving the Model
-joblib.dump(MLPClassifier, 'DS2Val_mlp.joblib')
+joblib.dump(MLPClassifier_ds2, 'DS2Val_mlp.joblib')
