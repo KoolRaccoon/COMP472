@@ -30,11 +30,11 @@ for row in val_features:
 
 
 # Creating the classifier 
-MLPClassifier_ds1 = MLPClassifier(hidden_layer_sizes=(100, 3),
-                            max_iter=200,
+MLPClassifier_ds1 = MLPClassifier(hidden_layer_sizes=(100, 100),
+                            max_iter=100,
                             solver = "adam",
-                            activation = "relu", 
-                            alpha=0.0001, 
+                            activation = "tanh", 
+                            alpha=0.001, 
                             learning_rate_init = 0.001)
 # (hidden_layer_sizes=(100, 3),
 #  activation=’relu’,
@@ -105,11 +105,11 @@ for row in val_features:
 
 
 # Creating the classifier 
-MLPClassifier_ds2 = MLPClassifier(hidden_layer_sizes=(100, 3),
-                            max_iter=200,
+MLPClassifier_ds2 = MLPClassifier(hidden_layer_sizes=(100, 100),
+                            max_iter=100,
                             solver = "adam",
-                            activation = "relu", 
-                            alpha=0.0001, 
+                            activation = "tanh", 
+                            alpha=0.001, 
                             learning_rate_init = 0.001)
 # (hidden_layer_sizes=(100, 3),
 #  activation=’relu’,
