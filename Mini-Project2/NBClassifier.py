@@ -31,7 +31,7 @@ for row in val_features:
     del row[1024]  # 0 for column 1, 1 for column 2, etc.
 
 # Creating the classifier 
-NBclassifier = naive_bayes.MultinomialNB(alpha=0.1, fit_prior=True, class_prior=None)
+NBclassifier = naive_bayes.MultinomialNB(alpha=10, fit_prior=True, class_prior=None)
 
 # fitting the model
 NBclassifier.fit(train_features, train_labels)
@@ -78,7 +78,7 @@ for row in val_features:
     del row[1024]  # 0 for column 1, 1 for column 2, etc.
 
 # Creating the classifier 
-NBclassifier = naive_bayes.MultinomialNB(alpha=0.1, fit_prior=True, class_prior=None)
+NBclassifier = naive_bayes.MultinomialNB(alpha=0.1, fit_prior=False, class_prior=None)
 
 # fitting the model
 NBclassifier.fit(train_features, train_labels)

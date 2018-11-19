@@ -90,7 +90,7 @@ val_labels_ds2 = [row[1024] for row in val_features_ds2]
 for row in val_features_ds2:
     del row[1024]  # 0 for column 1, 1 for column 2, etc.
 
-DTclassifier_ds2 = tree.DecisionTreeClassifier(criterion="entropy", max_depth = 40)
+DTclassifier_ds2 = tree.DecisionTreeClassifier(criterion="gini", max_depth = 40)
 # given in slides: criterion = "entropy", max_depth = 10)
 
 # (criterion=’gini’, 
