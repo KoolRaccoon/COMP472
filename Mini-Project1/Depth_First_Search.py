@@ -1,43 +1,21 @@
-#
-#
-#
-# 1) Depth-First Search
-# 2) Best-First Search
-# 3) A* Algorithm
-#
-#
-#
-#   [	a,   b,   c,   d    ]
-# 	[	e,   f,   g,   h    ]
-# 	[	i,   j,   k,   l    ]
-# 
-#   There are 8 possible moves: (Also Order of Preference if there are ties) 
-# 		- up
-# 		- Up-Right
-# 		- Right
-# 		- Down-Right
-# 		- Down
-# 		- Down-Left
-# 		- Left
-# 		- Up-Left
-#		
-
-
-
-# print("Example of input: 0 1 2 3 4 5 6 7 8 9 10 11")
-# input_string = input("Input the initial puzzle sequence\n")
-# type(input_string)
-
-# print("this is the initial puzzle sequence that was inputted: ", input_string)
-
-# Extracted_Puzzle = [int(s) for s in input_string.split() if s.isdigit()]
-
-# print (Extracted_Puzzle)
-
-
-#Check for errors in initial puzzle
-
 import copy
+
+# These need to be modified here
+#########################
+Max_Depth = 40          #
+Col = 4                 #
+Row = 3                 #
+#########################
+
+
+
+print("Enter puzzle of 12 pieces, example of input: 0 1 2 3 4 5 6 7 8 9 10 11")
+input_puzzle = input("Input the initial puzzle sequence\n")
+type(input_puzzle)
+print("this is the initial puzzle sequence that was inputted: ", input_puzzle)
+Extracted_Puzzle = [int(s) for s in input_puzzle.split() if s.isdigit()]
+
+
 
 # Node Class
 
@@ -326,14 +304,10 @@ def Move_Up_Left(Node):
 
 
 
-### Creating a 2D list to hold the board of the game ###
-Col = 4
-Row = 3
-#Type_Of_Search will determine if we are using DFS, BFS-H1, BFS H2, A*-H1, A*-H2, represented with Integers from 0 to 4, respectively 
-Type_Of_Search = 0
-
+# used in the making of the output file
 Pieces = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]
-Extracted_Puzzle = [1, 6, 3, 7, 5, 2, 0, 4, 9, 10, 11, 8]
+
+### Creating a 2D list to hold the board of the game ###
 Board = [[i * j for j in range(Col)] for i in range(Row)]
 
 k = 0
@@ -371,7 +345,7 @@ Root = Node(Board = Board, Board_Size = [Row, Col], Depth=0)
 #Move_Down_Right(Root)
 
 #print ("Board after moving\n", Root.getBoard_Position())
-Max_Depth = 10
+# Max_Depth = 10
 #Final_Solution_Found = [[i * j for j in range(Col)] for i in range(Row)]
 Final_Solution_Found = []
 Reversed_Search_Path = []
@@ -414,48 +388,6 @@ def Find_Search_Path(Node):
 
 
 
-def Heuristic1(Node):
-    global Final_Solution
-    Board = Node.getBoard_Position()
-    print (Board)
-    print (Final_Solution)
-    heuristic = 0
-    for i in range(len(Board)):
-        for j in range(len(Board[i])):
-            if Board[i][j] != Final_Solution[i][j] and Board[i][j]!= 0:
-                heuristic = heuristic +1
-
-    print(heuristic)
-    Node.setHeuristic(heuristic)
-
-
-def Heuristic2(Node):
-    Board_Size = Node.getBoard_Size()
-    Row = Board_Size[0]
-    Col = Board_Size[1]
-    Board_2D = Node.getBoard_Position()
-    k = 0
-    Sum_Of_Permutation = 0
-
-    Permuted_Board = [0 for x in range(Col*Row)]
-    print (Board)
-    for i in range (0, Row):
-        for j in range (0, Col):
-            Permuted_Board[k] = Board_2D[i][j]
-            k = k + 1
-
-    for k in range (0, len(Permuted_Board)):
-        for m in range(k,len(Permuted_Board)):
-            if (Permuted_Board[k] != 0):
-                if (Permuted_Board[k] > Permuted_Board[m] and Permuted_Board[m] != 0):
-                    Sum_Of_Permutation = Sum_Of_Permutation + 1
-
-    Node.setHeuristic(Sum_Of_Permutation)
-
-
-Heuristic2(Root)
-print ("Heuristic2 of Root", Root.getHeuristic())
-
 
 def Tree_Traversal(Current_Node):
     #print("Calling Tree_Traversal Fct")
@@ -469,7 +401,7 @@ def Tree_Traversal(Current_Node):
         if Current_Node.getBoard_Position() == Final_Solution:
             SolutionFound = True
             Final_Solution_Found = copy.deepcopy(Current_Node.getBoard_Position())
-            print("Current_Node's depth", Current_Node.getDepth(),"move", Current_Node.getMove(), "Board", Current_Node.getBoard_Position())
+            # print("Current_Node's depth", Current_Node.getDepth(),"move", Current_Node.getMove(), "Board", Current_Node.getBoard_Position())
             Find_Search_Path(Current_Node)
             ### Call function to find Search Path to solution
             return
@@ -488,7 +420,7 @@ def Tree_Traversal(Current_Node):
             Max_Col     = Board_Size[1]
             LeafNodes   = []
 
-            if (Zero_Row - 1 >= 0) and (Current_Node.getMove() != 0): #Create node by moving Zero position up
+            if (Zero_Row - 1 >= 0) and (Current_Node.getMove() != 4): #Create node by moving Zero position up
                 # print("Create Node for moving up")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Up(New_Node)
@@ -499,7 +431,7 @@ def Tree_Traversal(Current_Node):
                 New_Node.setDepth(Current_Node.getDepth() + 1)
                 LeafNodes.append(New_Node)
 
-            if (Zero_Row - 1 >= 0 and Zero_Col + 1 < Max_Col) and (Current_Node.getMove() != 1): #Create node by moving Zero position Up-Right
+            if (Zero_Row - 1 >= 0 and Zero_Col + 1 < Max_Col) and (Current_Node.getMove() != 5): #Create node by moving Zero position Up-Right
                 # print("Create Node for moving up right")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Up_Right(New_Node)
@@ -510,7 +442,7 @@ def Tree_Traversal(Current_Node):
                 New_Node.setDepth(Current_Node.getDepth() + 1)
                 LeafNodes.append(New_Node)
 
-            if (Zero_Col + 1 < Max_Col) and (Current_Node.getMove() != 2): #Create node by moving Zero position Right
+            if (Zero_Col + 1 < Max_Col) and (Current_Node.getMove() != 6): #Create node by moving Zero position Right
                 # print("Create Node for moving right")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Right(New_Node)
@@ -521,7 +453,7 @@ def Tree_Traversal(Current_Node):
                 New_Node.setDepth(Current_Node.getDepth() + 1)
                 LeafNodes.append(New_Node)
 
-            if (Zero_Row + 1 < Max_Row and Zero_Col + 1 < Max_Col) and (Current_Node.getMove() != 3): #Create node by moving Zero position Down-Right
+            if (Zero_Row + 1 < Max_Row and Zero_Col + 1 < Max_Col) and (Current_Node.getMove() != 7): #Create node by moving Zero position Down-Right
                 # print("Create Node for moving down right")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Down_Right(New_Node)
@@ -532,7 +464,7 @@ def Tree_Traversal(Current_Node):
                 New_Node.setDepth(Current_Node.getDepth() + 1)
                 LeafNodes.append(New_Node)
 
-            if (Zero_Row + 1 < Max_Row) and (Current_Node.getMove() != 4): #Create node by moving Zero position Down
+            if (Zero_Row + 1 < Max_Row) and (Current_Node.getMove() != 0): #Create node by moving Zero position Down
                 # print("Create Node for moving down")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Down(New_Node)
@@ -543,7 +475,7 @@ def Tree_Traversal(Current_Node):
                 New_Node.setDepth(Current_Node.getDepth() + 1)
                 LeafNodes.append(New_Node)
 
-            if (Zero_Row + 1 < Max_Row and Zero_Col - 1 >= 0) and (Current_Node.getMove() != 5): #Create node by moving Zero position Down-Left
+            if (Zero_Row + 1 < Max_Row and Zero_Col - 1 >= 0) and (Current_Node.getMove() != 1): #Create node by moving Zero position Down-Left
                 # print("Create Node for moving down left")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Down_Left(New_Node)
@@ -554,7 +486,7 @@ def Tree_Traversal(Current_Node):
                 New_Node.setDepth(Current_Node.getDepth() + 1)
                 LeafNodes.append(New_Node)
 
-            if (Zero_Col - 1 >= 0) and (Current_Node.getMove() != 6): #Create node by moving Zero position Left
+            if (Zero_Col - 1 >= 0) and (Current_Node.getMove() != 2): #Create node by moving Zero position Left
                 # print("Create Node for moving left")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Left(New_Node)
@@ -565,7 +497,7 @@ def Tree_Traversal(Current_Node):
                 New_Node.setDepth(Current_Node.getDepth() + 1)
                 LeafNodes.append(New_Node)
 
-            if (Zero_Row - 1 >= 0 and Zero_Col - 1 >= 0) and (Current_Node.getMove() != 7): #Create node by moving Zero position Up-Left
+            if (Zero_Row - 1 >= 0 and Zero_Col - 1 >= 0) and (Current_Node.getMove() != 3): #Create node by moving Zero position Up-Left
                 # print("Create Node for moving up left")
                 New_Node = Node(Board = copy.deepcopy(Board), Board_Size = Board_Size)
                 Move_Up_Left(New_Node)
@@ -582,14 +514,15 @@ def Tree_Traversal(Current_Node):
                 Tree_Traversal(LeafNodes[j])
 
 
-# Tree_Traversal(Root)
+Tree_Traversal(Root)
 
 ### Reversing the Search Path List
 for i in reversed(Reversed_Search_Path):
     Search_Path.append(i)
 
 print("Final Solution found is:", Final_Solution_Found, "\n")
-print("Search Path of Solution:\n", Search_Path)
+print("Number of moves needed: ", len(Search_Path) - 1)
+# print("Search Path of Solution:\n", Search_Path)
 
 ### Outputing to a file ###
 for j in Search_Path:
