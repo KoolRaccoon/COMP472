@@ -22,6 +22,7 @@
 
 
 ######################### Unigram models #########################
+import math
 
 # Extract Moby-dick train data
 with open('TrainingCorpusENandFR/en-moby-dick.txt', 'r') as content_file:
@@ -35,6 +36,7 @@ with open("Sentences.txt", 'r') as file:
 
 alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 special_characters = [",", ".", ";", "-", '"', "'", ":", "?", "!"]
+languages = ["english", "french"]
 
 ### Clean English Train Set ###
 # Remove all spaces
@@ -87,35 +89,35 @@ with open('n_gram_models/unigramEN.txt', 'w') as f:
 
 ### Count frequency of letters in sentences ###
 for instance in clean_sentences:
-    incrementor = 0
-    Sentences_letter_frequencies    = [None] * len(alphabet)
-    unigram_probs                   = [None] * len(alphabet)
-    
-    for letter in alphabet:
-        if instance.count(letter) != 0:
-            Sentences_letter_frequencies[incrementor] = instance.count(letter)
-            unigram_probs[incrementor] = Sentences_letter_frequencies[incrementor] /
- 
-
-        incrementor = incrementor + 1
+    calculate_sentence_probability()
 
 
 
 
 
+def calculate_unigram_probability(unigram = None, unigram_probs = None, train_corpus_len = None):
+    unigram_pos = 0
+    for i in range (0, len(alphabet)):
+        if unigram == alphabet[i]:
+            unigram_pos = i
+
+    return float(unigram_probs[i])/float(train_corpus_len)
 
 
 
-
-
-
-
-
+def calculate_sentence_probability(sentence = None, unigram_probs = None, train_corpus = None):
+    for letter in sentence:
+        print("UNIGRAM: ", letter)
+        for language in languages:
+            unigram_prob = calculate_unigram_probability(unigram = letter, unigram_probs = unigram_probs, train_corpus_len = len(train_corpus))
+            sentence_log_prob += math.log(unigram_prob, 2)
+            print_log_prob(language, sentence_log_prob, unigram_prob, letter)
         
+        print("\n")
 
-        # print ("Number of " + letter + " =", moby_dick_train.count(letter))
-        english_letter_frequencies[incrementor] =  moby_dick_train.count(letter)
-        incrementor = incrementor + 1
+
+def print_log_prob(language = None, sentence_log_prob = None, unigram_prob = None, unigram = None):
+    print (language, ": P(", unigram, ") = ", unigram_prob, " ==> log prob of sentence so far: ", sentence_log_prob)
 
 # print ("letter frequencies in sentences: ", english_letter_frequencies)
 
@@ -170,3 +172,4 @@ for instance in clean_sentences:
 
 # QUESTIONS ABOUT PROJECT
 # Do the 20 extra sentences have to be in the new language only, or a mix of all 3?
+# Do we combine the texts of eah languages in one input for that language?
