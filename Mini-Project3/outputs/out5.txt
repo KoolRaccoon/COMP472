@@ -1,0 +1,37 @@
+
+BIGRAM: iha
+english: P(iha) = 117649.00000081456 ==> log prob of sentence so far: 5.070588240088547
+french: P(iha) = 117649.00000112897 ==> log prob of sentence so far: 5.070588240089708
+romanian: P(iha) = 117649.00000244155 ==> log prob of sentence so far: 5.070588240094553
+
+
+BIGRAM: hat
+english: P(hat) = 117649.00318654483 ==> log prob of sentence so far: 10.141176491937033
+french: P(hat) = 117649.0000496744 ==> log prob of sentence so far: 10.141176480358618
+romanian: P(hat) = 117649.00000732466 ==> log prob of sentence so far: 10.141176480207132
+
+
+BIGRAM: ate
+english: P(ate) = 117649.00119251064 ==> log prob of sentence so far: 15.211764736424659
+french: P(ate) = 117649.00050238888 ==> log prob of sentence so far: 15.2117647222987
+romanian: P(ate) = 117649.00289324064 ==> log prob of sentence so far: 15.211764730972902
+
+
+BIGRAM: tea
+english: P(tea) = 117649.00012462714 ==> log prob of sentence so far: 20.28235297697025
+french: P(tea) = 117649.00012757292 ==> log prob of sentence so far: 20.282352962855168
+romanian: P(tea) = 117649.00150236912 ==> log prob of sentence so far: 20.28235297660435
+
+
+BIGRAM: eai
+english: P(eai) = 117649.00000081456 ==> log prob of sentence so far: 25.3529412170588
+french: P(eai) = 117649.00012983083 ==> log prob of sentence so far: 25.35294120341997
+romanian: P(eai) = 117649.00002767093 ==> log prob of sentence so far: 25.352941216792036
+
+
+BIGRAM: ai.
+english: P(ai.) = 117649.00000081456 ==> log prob of sentence so far: 30.423529457147346
+french: P(ai.) = 117649.00003386891 ==> log prob of sentence so far: 30.423529443630535
+romanian: P(ai.) = 117649.00003174019 ==> log prob of sentence so far: 30.423529456994743
+
+

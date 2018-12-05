@@ -1,0 +1,25 @@
+
+BIGRAM: i'm
+english: P(i'm) = 117649.00000081456 ==> log prob of sentence so far: 5.070588240088547
+french: P(i'm) = 117649.00000112897 ==> log prob of sentence so far: 5.070588240089708
+romanian: P(i'm) = 117649.00000081384 ==> log prob of sentence so far: 5.070588240088545
+
+
+BIGRAM: 'mo
+english: P('mo) = 117649.00000325823 ==> log prob of sentence so far: 10.141176480186115
+french: P('mo) = 117649.00000112897 ==> log prob of sentence so far: 10.141176480179416
+romanian: P('mo) = 117649.00000081384 ==> log prob of sentence so far: 10.14117648017709
+
+
+BIGRAM: mok
+english: P(mok) = 117649.0000488734 ==> log prob of sentence so far: 15.211764720452068
+french: P(mok) = 117649.00000112897 ==> log prob of sentence so far: 15.211764720269123
+romanian: P(mok) = 117649.00000081384 ==> log prob of sentence so far: 15.211764720265636
+
+
+BIGRAM: ok.
+english: P(ok.) = 117649.0000114038 ==> log prob of sentence so far: 20.282352960579708
+french: P(ok.) = 117649.00000112897 ==> log prob of sentence so far: 20.282352960358832
+romanian: P(ok.) = 117649.00000081384 ==> log prob of sentence so far: 20.28235296035418
+
+

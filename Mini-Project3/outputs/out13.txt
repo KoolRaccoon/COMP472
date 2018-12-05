@@ -1,0 +1,199 @@
+
+BIGRAM: m-a
+english: P(m-a) = 117649.00000081456 ==> log prob of sentence so far: 5.070588240088547
+french: P(m-a) = 117649.00000112897 ==> log prob of sentence so far: 5.070588240089708
+romanian: P(m-a) = 117649.00009603443 ==> log prob of sentence so far: 5.070588240440046
+
+
+BIGRAM: -am
+english: P(-am) = 117649.00000162912 ==> log prob of sentence so far: 10.141176480180102
+french: P(-am) = 117649.00000338689 ==> log prob of sentence so far: 10.141176480187752
+romanian: P(-am) = 117649.00033123739 ==> log prob of sentence so far: 10.141176481748332
+
+
+BIGRAM: amd
+english: P(amd) = 117649.00000081456 ==> log prob of sentence so far: 15.211764720268649
+french: P(amd) = 117649.00000112897 ==> log prob of sentence so far: 15.211764720277461
+romanian: P(amd) = 117649.00000488311 ==> log prob of sentence so far: 15.211764721851898
+
+
+BIGRAM: mdu
+english: P(mdu) = 117649.00000081456 ==> log prob of sentence so far: 20.282352960357194
+french: P(mdu) = 117649.00000112897 ==> log prob of sentence so far: 20.28235296036717
+romanian: P(mdu) = 117649.00000081384 ==> log prob of sentence so far: 20.282352961940443
+
+
+BIGRAM: dus
+english: P(dus) = 117649.00002280758 ==> log prob of sentence so far: 25.352941200526928
+french: P(dus) = 117649.00007225368 ==> log prob of sentence so far: 25.35294120071943
+romanian: P(dus) = 117649.0001863719 ==> log prob of sentence so far: 25.352941202713964
+
+
+BIGRAM: uss
+english: P(uss) = 117649.00002362214 ==> log prob of sentence so far: 30.423529440699667
+french: P(uss) = 117649.00038497665 ==> log prob of sentence so far: 30.42352944222609
+romanian: P(uss) = 117649.00000081384 ==> log prob of sentence so far: 30.42352944280251
+
+
+BIGRAM: ssa
+english: P(ssa) = 117649.00009285944 ==> log prob of sentence so far: 35.494117681127996
+french: P(ssa) = 117649.00102397017 ==> log prob of sentence so far: 35.494117686091556
+romanian: P(ssa) = 117649.00000325541 ==> log prob of sentence so far: 35.49411768290007
+
+
+BIGRAM: sad
+english: P(sad) = 117649.00002850947 ==> log prob of sentence so far: 40.564705921318776
+french: P(sad) = 117649.00000112897 ==> log prob of sentence so far: 40.56470592618126
+romanian: P(sad) = 117649.00002604323 ==> log prob of sentence so far: 40.564705923081746
+
+
+BIGRAM: ade
+english: P(ade) = 117649.00035433205 ==> log prob of sentence so far: 45.63529416271231
+french: P(ade) = 117649.00010612259 ==> log prob of sentence so far: 45.63529416665855
+romanian: P(ade) = 117649.00046063971 ==> log prob of sentence so far: 45.63529416486771
+
+
+BIGRAM: des
+english: P(des) = 117649.00041053645 ==> log prob of sentence so far: 50.70588240431333
+french: P(des) = 117649.00306739462 ==> log prob of sentence so far: 50.7058824180672
+romanian: P(des) = 117649.00065596399 ==> log prob of sentence so far: 50.7058824073747
+
+
+BIGRAM: esc
+english: P(esc) = 117649.00013195815 ==> log prob of sentence so far: 55.77647064488598
+french: P(esc) = 117649.00014789426 ==> log prob of sentence so far: 55.776470658698685
+romanian: P(esc) = 117649.00068607647 ==> log prob of sentence so far: 55.77647064999285
+
+
+BIGRAM: sch
+english: P(sch) = 117649.00004317149 ==> log prob of sentence so far: 60.84705888513089
+french: P(sch) = 117649.00000225793 ==> log prob of sentence so far: 60.84705889879256
+romanian: P(sch) = 117649.00034018976 ==> log prob of sentence so far: 60.847058891334186
+
+
+BIGRAM: chi
+english: P(chi) = 117649.00028916754 ==> log prob of sentence so far: 65.91764712628388
+french: P(chi) = 117649.00026869339 ==> log prob of sentence so far: 65.91764713986997
+romanian: P(chi) = 117649.00148202284 ==> log prob of sentence so far: 65.91764713689052
+
+
+BIGRAM: hid
+english: P(hid) = 117649.00004235693 ==> log prob of sentence so far: 70.98823536652579
+french: P(hid) = 117649.00001128964 ==> log prob of sentence so far: 70.98823537999718
+romanian: P(hid) = 117649.0000667358 ==> log prob of sentence so far: 70.98823537722241
+
+
+BIGRAM: idp
+english: P(idp) = 117649.00000081456 ==> log prob of sentence so far: 76.05882360661434
+french: P(idp) = 117649.00000112897 ==> log prob of sentence so far: 76.05882362008688
+romanian: P(idp) = 117649.00000081384 ==> log prob of sentence so far: 76.05882361731095
+
+
+BIGRAM: dpo
+english: P(dpo) = 117649.00000162912 ==> log prob of sentence so far: 81.12941184670589
+french: P(dpo) = 117649.00000112897 ==> log prob of sentence so far: 81.12941186017659
+romanian: P(dpo) = 117649.00000081384 ==> log prob of sentence so far: 81.12941185739949
+
+
+BIGRAM: por
+english: P(por) = 117649.00018490432 ==> log prob of sentence so far: 86.200000087474
+french: P(por) = 117649.00047529375 ==> log prob of sentence so far: 86.20000010201665
+romanian: P(por) = 117649.00031170496 ==> log prob of sentence so far: 86.20000009863567
+
+
+BIGRAM: ort
+english: P(ort) = 117649.00060521543 ==> log prob of sentence so far: 91.27058832979365
+french: P(ort) = 117649.00073834232 ==> log prob of sentence so far: 91.27058834482773
+romanian: P(ort) = 117649.00038820697 ==> log prob of sentence so far: 91.27058834015425
+
+
+BIGRAM: rta
+english: P(rta) = 117649.00023866504 ==> log prob of sentence so far: 96.34117657076021
+french: P(rta) = 117649.00031272297 ==> log prob of sentence so far: 96.34117658606768
+romanian: P(rta) = 117649.00044354885 ==> log prob of sentence so far: 96.34117658187712
+
+
+BIGRAM: tad
+english: P(tad) = 117649.00000244367 ==> log prob of sentence so far: 101.41176481085478
+french: P(tad) = 117649.00001580549 ==> log prob of sentence so far: 101.41176482621157
+romanian: P(tad) = 117649.0000065108 ==> log prob of sentence so far: 101.4117648219867
+
+
+BIGRAM: ada
+english: P(ada) = 117649.00002606581 ==> log prob of sentence so far: 106.48235305103654
+french: P(ada) = 117649.00003273995 ==> log prob of sentence so far: 106.48235306641797
+romanian: P(ada) = 117649.00054039713 ==> log prob of sentence so far: 106.48235306406708
+
+
+BIGRAM: dar
+english: P(dar) = 117649.00019223533 ==> log prob of sentence so far: 111.5529412918317
+french: P(dar) = 117649.00000338689 ==> log prob of sentence so far: 111.55294130651602
+romanian: P(dar) = 117649.00035890834 ==> log prob of sentence so far: 111.55294130547752
+
+
+BIGRAM: are
+english: P(are) = 117649.00083817859 ==> log prob of sentence so far: 116.62352953501133
+french: P(are) = 117649.00037255805 ==> log prob of sentence so far: 116.62352954797683
+romanian: P(are) = 117649.00463895124 ==> log prob of sentence so far: 116.62352956268748
+
+
+BIGRAM: rer
+english: P(rer) = 117649.00005213161 ==> log prob of sentence so far: 121.69411777528931
+french: P(rer) = 117649.00029465955 ==> log prob of sentence so far: 121.69411778915008
+romanian: P(rer) = 117649.000191255 ==> log prob of sentence so far: 121.69411780347903
+
+
+BIGRAM: era
+english: P(era) = 117649.00036410673 ==> log prob of sentence so far: 126.76470601671893
+french: P(era) = 117649.00071576305 ==> log prob of sentence so far: 126.76470603187782
+romanian: P(era) = 117649.00083256967 ==> log prob of sentence so far: 126.76470604663795
+
+
+BIGRAM: rai
+english: P(rai) = 117649.00027043273 ==> log prob of sentence so far: 131.83529425780276
+french: P(rai) = 117649.00159974169 ==> log prob of sentence so far: 131.8352942778687
+romanian: P(rai) = 117649.00026694316 ==> log prob of sentence so far: 131.8352942877089
+
+
+BIGRAM: ain
+english: P(ain) = 117649.00143361936 ==> log prob of sentence so far: 136.9058825031804
+french: P(ain) = 117649.00197229974 ==> log prob of sentence so far: 136.9058825252349
+romanian: P(ain) = 117649.00039146238 ==> log prob of sentence so far: 136.9058825292395
+
+
+BIGRAM: inc
+english: P(inc) = 117649.00034374282 ==> log prob of sentence so far: 141.97647074453485
+french: P(inc) = 117649.00037594495 ==> log prob of sentence so far: 141.97647076670822
+romanian: P(inc) = 117649.00078536631 ==> log prob of sentence so far: 141.9764707722242
+
+
+BIGRAM: nch
+english: P(nch) = 117649.00019386444 ==> log prob of sentence so far: 147.04705898533604
+french: P(nch) = 117649.00029804643 ==> log prob of sentence so far: 147.04705900789398
+romanian: P(nch) = 117649.00021892594 ==> log prob of sentence so far: 147.0470590131179
+
+
+BIGRAM: chi
+english: P(chi) = 117649.00028916754 ==> log prob of sentence so far: 152.11764722648903
+french: P(chi) = 117649.00026869339 ==> log prob of sentence so far: 152.1176472489714
+romanian: P(chi) = 117649.00148202284 ==> log prob of sentence so far: 152.11764725867422
+
+
+BIGRAM: his
+english: P(his) = 117649.00323623278 ==> log prob of sentence so far: 157.18823547852094
+french: P(his) = 117649.00010950949 ==> log prob of sentence so far: 157.1882354894612
+romanian: P(his) = 117649.0000781297 ==> log prob of sentence so far: 157.18823549904818
+
+
+BIGRAM: isa
+english: P(isa) = 117649.00004398605 ==> log prob of sentence so far: 162.25882371876884
+french: P(isa) = 117649.00034094707 ==> log prob of sentence so far: 162.25882373080532
+romanian: P(isa) = 117649.0001448655 ==> log prob of sentence so far: 162.2588237396685
+
+
+BIGRAM: sa.
+english: P(sa.) = 117649.00000081456 ==> log prob of sentence so far: 167.32941195885738
+french: P(sa.) = 117649.00001016067 ==> log prob of sentence so far: 167.32941197092836
+romanian: P(sa.) = 117649.0000732466 ==> log prob of sentence so far: 167.32941198002442
+
+
